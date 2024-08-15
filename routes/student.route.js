@@ -42,6 +42,16 @@ router.route('/login/:email').get((req, res, next) => {
   });
 });
 
+router.route('/edit-student/:id').get((req, res, next) => {
+  studentSchema.findById(req.params.id, (error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
+
 // Update Student
 router.route('/update-student/:id').put((req, res, next) => {
   studentSchema.findByIdAndUpdate(
